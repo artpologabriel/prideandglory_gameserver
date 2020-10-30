@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title></title>		
+	</head>
+	<body>
+		<div id ="info" >Synching with Server</div>
+
+
+		<script src="/socket.io/socket.io.js"></script>
+	
+		<script>
+			
+			const socket = io();			
+				
+					socket.on('send', (data) => {					
+							SendDataToUnity(data);
+							document.getElementById('info').innerHTML = data;
+						})	
+
+					function SendDataToUnity(data){							
+						window.location.href = 'pag://SocketData?&d=' +data; 						
+						//alert(data);
+					}
+
+					function DataFromUnity(data){
+						socket.emit('DataFromUnity', data)
+					}						
+
+				
+
+					
+		</script>
+	</body>
+</html>
